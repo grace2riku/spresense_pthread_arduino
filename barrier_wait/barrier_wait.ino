@@ -13,18 +13,10 @@ const int spresense_main_board_leds[2] = {
 void* thread(void* arg) {
   int thread_index = (uint32_t)arg;
   int ret;
-#if 0
+#if 1
   unsigned int initialize_time = 3 * (thread_index + 1);
 #else
-  unsigned int initialize_time;
-
-  if (thread_index == 0) {
-    initialize_time = 9;    
-  } else if (thread_index == 1) {
-    initialize_time = 6;    
-  } else {
-    initialize_time = 3;
-  }
+  unsigned int initialize_time = 9 - (3 * thread_index);
 #endif
 
   printf("thread index[%d] start.initialize_time = %d(sec).\n", thread_index, initialize_time);
